@@ -530,4 +530,5 @@ import time
 # # возвращает True, если концом пути является существующая папка
 
 
-print('Hi')
+print('Hi, i add new info'
+      '')
