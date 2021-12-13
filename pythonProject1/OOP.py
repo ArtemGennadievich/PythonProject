@@ -95,22 +95,29 @@
 # print(h1.get_name())
 
 
-class Person:
-    skill = 10  # квалисификация сотрудника
+# class Person:
+#     skill = 10  # квалисификация сотрудника
+#
+#     def print_info(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#         print(f"Данные сотрудника: {self.name} {self.surname}")
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print(f"Квалисификация сотрудника: {self.name}:", self.skill)
+#
+#
+# p1 = Person()
+# p1.print_info("Viktor", 'Reznik')
+# p1.add_skill(3)
+# p2 = Person()
+# p2.print_info("Anna", 'Dolgix')
+# p2.add_skill(2)
 
-    def print_info(self, name, surname):
-        self.name = name
-        self.surname = surname
-        print(f"Данные сотрудника: {self.name} {self.surname}")
-
-    def add_skill(self, k):
-        self.skill += k
-        print(f"Квалисификация сотрудника: {self.name}:", self.skill)
+def sum_args(a,b):
+    print(a + b)
 
 
-p1 = Person()
-p1.print_info("Viktor", 'Reznik')
-p1.add_skill(3)
-p2 = Person()
-p2.print_info("Anna", 'Dolgix')
-p2.add_skill(2)
+sum_args(5, 2)
+sum_args("Hello", " world")
