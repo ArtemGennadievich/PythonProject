@@ -520,7 +520,7 @@ import time
 #
 
 # print(os.path.normcase('C:/Users/dotap/PycharmProjects'))
-# # нормализует ругистр пути и слеши
+# # нормализует регистр пути и слеши
 # print(os.path.relpath(r'C:\Users\dotap\PycharmProjects\pythonProject1\Works\w.txt'))
 # # возращает относительный путь
 # print(os.path.isfile(r'C:\Users\dotap\PycharmProjects\pythonProject1\Works\w.txt'))
@@ -529,6 +529,8 @@ import time
 # print(os.path.isdir(r'C:\Users\dotap\PycharmProjects'))
 # # возвращает True, если концом пути является существующая папка
 
+#
+# print('Hi, i add new info'
+#       '')
 
-print('Hi, i add new info'
-      '')
+
