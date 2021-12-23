@@ -19,3 +19,6 @@ class Temperature:
 print(Temperature.fahrenheit(10))
 print(Temperature.celsius(50))
 print(Temperature.count_value())
+
+
+

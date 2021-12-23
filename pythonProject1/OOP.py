@@ -293,46 +293,46 @@
 # p1._Point__x = 111
 # print(p1.__dict__)
 
-# import math
-#
-#
-# class Rectangle:
-#     def __init__(self, length, width):
-#         self.__length = length
-#         self.__width = width
-#
-#     def set_length(self, length):
-#         self.__length = length
-#
-#     def set_width(self, width):
-#         self.__width = width
-#
-#     def get_width(self):
-#         return self.__width
-#
-#     def get_length(self):
-#         return self.__length
-#
-#     def square(self):
-#         return self.__width * self.__length
-#
-#     def perimeter(self):
-#         return (self.__length * self.__width) * 2
-#
-#     def hypo(self):
-#         return math.sqrt(self.__length ** 2 + self.__width ** 2)
-#
-#     def art(self):
-#         for i in range(self.__length):
-#             print(self.__width * "*")
-#
-# res1 = Rectangle(3, 9)
-# print('Ширина прямоугольника', res1.get_width())
-# print('Длина прямоугольника', res1.get_length())
-# print('Площадь прямоугольника', res1.square())
-# print('Периметр прямоугольника', res1.perimeter())
-# print('Гипотянуза прямоугольника', res1.hypo())
-# res1.art()
+import math
+
+
+class Rectangle:
+    def __init__(self, length, width):
+        self.__length = length
+        self.__width = width
+
+    def set_length(self, length):
+        self.__length = length
+
+    def set_width(self, width):
+        self.__width = width
+
+    def get_width(self):
+        return self.__width
+
+    def get_length(self):
+        return self.__length
+
+    def square(self):
+        return self.__width * self.__length
+
+    def perimeter(self):
+        return (self.__length * self.__width) * 2
+
+    def hypo(self):
+        return math.sqrt(self.__length ** 2 + self.__width ** 2)
+
+    def art(self):
+        for i in range(self.__length):
+            print(self.__width * "*")
+
+res1 = Rectangle(3, 9)
+print('Ширина прямоугольника', res1.get_width())
+print('Длина прямоугольника', res1.get_length())
+print('Площадь прямоугольника', res1.square())
+print('Периметр прямоугольника', res1.perimeter())
+print('Гипотянуза прямоугольника', res1.hypo())
+res1.art()
 
 # class Point:
 #     __slots__ = ['__x', '__y', 'z', '__dict__']
@@ -374,7 +374,7 @@
 #         print('Удаление свойства')
 #         del self.__x
 #
-#     # coordX = property(__get_coords_x, __set_coords_x, __del__coords_x)
+#     coordX = property(__get_coords_x, __set_coords_x, __del__coords_x)
 #
 #
 #
@@ -528,48 +528,173 @@
 # print(Numbers.factorial(4))
 
 
-class Date:
-    def __init__(self, day=0, month=0, year=0):
-        self.day = day
-        self.month = month
-        self.year = year
-
-    @classmethod
-    def from_string(cls, date_as_string):
-        day, month, year = map(int, date_as_string.split('.'))
-        day1 = cls(day, month, year)
-        return day1
-
-    @staticmethod
-    def is_date_valid(date_as_string):
-        if date_as_string.count('.') == 2:
-            day, month, year = map(int, date_as_string.split('.'))
-            return day <= 31 and month <= 12 and year <= 3999
-
-    def string_to_db(self):
-        return f"{self.year}-{self.month}-{self.day}"
-
-
-# d = '16.12.2021'
-# # day, month, year = map(int, d.split('.'))
-# # print(day, month, year)
-# d1 = Date()
+# class Date:
+#     def __init__(self, day=0, month=0, year=0):
+#         self.day = day
+#         self.month = month
+#         self.year = year
 #
-# date = Date.from_string('16.12.2021')
-# print(date.string_to_db())
+#     @classmethod
+#     def from_string(cls, date_as_string):
+#         day, month, year = map(int, date_as_string.split('.'))
+#         day1 = cls(day, month, year)
+#         return day1
+#
+#     @staticmethod
+#     def is_date_valid(date_as_string):
+#         if date_as_string.count('.') == 2:
+#             day, month, year = map(int, date_as_string.split('.'))
+#             return day <= 31 and month <= 12 and year <= 3999
+#
+#     def string_to_db(self):
+#         return f"{self.year}-{self.month}-{self.day}"
+#
+#
+# # d = '16.12.2021'
+# # # day, month, year = map(int, d.split('.'))
+# # # print(day, month, year)
+# # d1 = Date()
+# #
+# # date = Date.from_string('16.12.2021')
+# # print(date.string_to_db())
+#
+# dates = [
+#     '12.12.2122',
+#     '30-11-2012',
+#     '02.11.2023',
+#     '32.23.2222'
+# ]
+# for i in dates:
+#     if Date.is_date_valid(i):
+#         date = Date.from_string(i)
+#         db = date.string_to_db()
+#         print(db)
+#     else:
+#         print("Не правильная дата или формат с датой")
 
-dates = [
-    '12.12.2122',
-    '30-11-2012',
-    '02.11.2023',
-    '32.23.2222'
-]
-for i in dates:
-    if Date.is_date_valid(i):
-        date = Date.from_string(i)
-        db = date.string_to_db()
-        print(db)
-    else:
-        print("Не правильная дата или формат с датой")
+
+# class Account:
+#     rate_usd = 0.013
+#     rate_euro = 0.011
+#     siffix = 'RUB'
+#     siffix_usd = 'USD'
+#     siffix_euro = 'EUR'
+#
+#     def __init__(self, two_name, number, percent, value=0):
+#         self.two_name = two_name
+#         self.number = number
+#         self.percent = percent
+#         self.value = value
+#         print(f'Счёт #{self.number} принадлежащий {self.two_name} был открыт.')
+#         print("*" * 50)
+#
+#     def __del__(self):
+#         print("*" * 50)
+#         print(f'Счёт #{self.number} принадлежащий {self.two_name} был закрыт.')
+#
+#
+#     @staticmethod
+#     def convert(value, rate):
+#         return value * rate
+#
+#     @classmethod
+#     def set_usd_rate(cls, rate):
+#         cls.rate_usd = rate
+#
+#     @classmethod
+#     def set_euro_rate(cls, rate):
+#         cls.rate_euro = rate
+#
+#     def convert_to_usd(self):
+#         usd_value = self.convert(self.value, Account.rate_usd)
+#         print(f'Состояние счёта: {usd_value} {Account.siffix_usd}')
+#
+#     def convert_to_euro(self):
+#         euro_value = self.convert(self.value, Account.rate_euro)
+#         print(f'Состояние счёта: {euro_value} {Account.siffix_euro}')
+#
+#     def print_balance(self):
+#         print(f'Текущий баланс: {self.value} {Account.siffix}')
+#
+#     def print_info(self):
+#         print('Информация о счёте:')
+#         print("-" * 20)
+#         print(f'#{self.number}')
+#         print(f'Владелец: {self.two_name}')
+#         self.print_balance()
+#         print(f'Проценты: {self.percent:.0%}')
+#         print("-" * 20)
+#
+#     def get_sur_name(self, name):
+#         self.two_name = name
+#
+#     def add_percent(self):
+#         self.value += self.value * self.percent
+#         print("Проценты были успешно начислены!")
+#         self.print_balance()
+#
+#     def withdraw_money(self, val):
+#         if val > self.value:
+#             print(f'К сожалению у вас {val} {Account.siffix}')
+#         else:
+#             self.value -= val
+#             print(f'{val} {Account.siffix} было успешно снято')
+#         self.print_balance()
+#
+#     def add_money(self, val):
+#         self.value += val
+#         print(f'{val} {Account.siffix} было успешно добавлено')
+#         self.print_balance()
+#
+#
+#
+# acc = Account('Долгих', 12345, 0.03, 1000)
+# acc.print_info()
+# acc.convert_to_usd()
+# acc.convert_to_euro()
+# Account.set_usd_rate(2)
+# print()
+# Account.set_euro_rate(3)
+# acc.convert_to_usd()
+# acc.convert_to_euro()
+# print()
+# acc.get_sur_name('Дюма')
+# acc.print_info()
+# acc.add_percent()
+# print()
+# acc.withdraw_money(3000)
+# print()
+# acc.withdraw_money(100)
+# print()
+# acc.add_money(5000)
+# print()
+# acc.withdraw_money(3000)
 
 
+# class Point:
+#
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):
+#         return f'{self.x},{self.y}'
+#
+#
+#
+# # print(isinstance(Point, object))
+#
+#
+# class Line:
+#     def __init__(self, sp: Point, ep: Point, color: str = 'red', width: int or float = 1):
+#         self.sp = sp
+#         self.ep = ep
+#         self.color = color
+#         self.width = width
+#
+#     def draw_line(self):
+#         print(f'Рисование линии {self.sp}, {self.ep}, {self.color}, {self.width}')
+#
+#
+# line = Line(Point(1, 2), Point(10,20))
+# line.draw_line()
