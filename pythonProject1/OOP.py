@@ -293,46 +293,46 @@
 # p1._Point__x = 111
 # print(p1.__dict__)
 
-import math
-
-
-class Rectangle:
-    def __init__(self, length, width):
-        self.__length = length
-        self.__width = width
-
-    def set_length(self, length):
-        self.__length = length
-
-    def set_width(self, width):
-        self.__width = width
-
-    def get_width(self):
-        return self.__width
-
-    def get_length(self):
-        return self.__length
-
-    def square(self):
-        return self.__width * self.__length
-
-    def perimeter(self):
-        return (self.__length * self.__width) * 2
-
-    def hypo(self):
-        return math.sqrt(self.__length ** 2 + self.__width ** 2)
-
-    def art(self):
-        for i in range(self.__length):
-            print(self.__width * "*")
-
-res1 = Rectangle(3, 9)
-print('Ширина прямоугольника', res1.get_width())
-print('Длина прямоугольника', res1.get_length())
-print('Площадь прямоугольника', res1.square())
-print('Периметр прямоугольника', res1.perimeter())
-print('Гипотянуза прямоугольника', res1.hypo())
-res1.art()
+# import math
+#
+#
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self.__length = length
+#         self.__width = width
+#
+#     def set_length(self, length):
+#         self.__length = length
+#
+#     def set_width(self, width):
+#         self.__width = width
+#
+#     def get_width(self):
+#         return self.__width
+#
+#     def get_length(self):
+#         return self.__length
+#
+#     def square(self):
+#         return self.__width * self.__length
+#
+#     def perimeter(self):
+#         return (self.__length * self.__width) * 2
+#
+#     def hypo(self):
+#         return math.sqrt(self.__length ** 2 + self.__width ** 2)
+#
+#     def art(self):
+#         for i in range(self.__length):
+#             print(self.__width * "*")
+#
+# res1 = Rectangle(3, 9)
+# print('Ширина прямоугольника', res1.get_width())
+# print('Длина прямоугольника', res1.get_length())
+# print('Площадь прямоугольника', res1.square())
+# print('Периметр прямоугольника', res1.perimeter())
+# print('Гипотянуза прямоугольника', res1.hypo())
+# res1.art()
 
 # class Point:
 #     __slots__ = ['__x', '__y', 'z', '__dict__']
@@ -681,20 +681,281 @@ res1.art()
 #         return f'{self.x},{self.y}'
 #
 #
-#
 # # print(isinstance(Point, object))
 #
-#
-# class Line:
+# class Prop:
 #     def __init__(self, sp: Point, ep: Point, color: str = 'red', width: int or float = 1):
+#         print('Инициализатор базового класса Prop')
 #         self.sp = sp
 #         self.ep = ep
 #         self.color = color
 #         self.width = width
 #
+#
+# class Line(Prop):
+#     def __init__(self, *args):
+#         print("Переопределенный инициализатор Line")
+#         # Prop.__init__(self, *args)
+#         super().__init__(*args)
+#
 #     def draw_line(self):
-#         print(f'Рисование линии {self.sp}, {self.ep}, {self.color}, {self.width}')
+#         print(f'Рисование линии: {self.sp}, {self.ep}, {self.color}, {self.width}')
 #
 #
-# line = Line(Point(1, 2), Point(10,20))
+# class Rect(Prop):
+#     def draw_rect(self):
+#         print(f'Рисование прямоугольника: {self.sp}, {self.ep}, {self.color}, {self.width}')
+#
+# line = Line(Point(1, 2), Point(10, 20))
+# print(line.__dict__)
 # line.draw_line()
+# rect = Rect(Point(30, 40), Point(70, 80))
+# rect.draw_rect()
+
+# class Figure:
+#     def __init__(self, color):
+#         self.__color = color
+#
+#     @property
+#     def color(self):
+#         return self.__color
+#
+#     @color.setter
+#     def color(self, c):
+#         self.__color = c
+#
+#
+# #
+# #
+# class Rectangle(Figure):
+#     def __init__(self, width, height, color, border):
+#         super().__init__(color)
+#         self.__width = width
+#         self.__height = height
+#         self.__border = border
+#
+#     @property
+#     def width(self):
+#         return self.__width
+#
+#     @width.setter
+#     def width(self, w):
+#         if w > 0:
+#             self.__width = w
+#         else:
+#             raise ValueError('Значение ширины должно быть больше нуля')
+#
+#     @property
+#     def height(self):
+#         return self.__height
+#
+#     @height.setter
+#     def height(self, w):
+#         if w > 0:
+#             self.__height = w
+#         else:
+#             raise ValueError('Значение высоты должно быть больше нуля')
+#
+#     # def border_new(self, b):
+#     #     self.__border = b
+#
+#     def area(self):
+#         # return self.__color
+#         return self.width * self.height
+#
+#
+# rect = Rectangle(10, 20, 'green', 30)
+# print(rect.area())
+
+
+# class Liquid:  # Жидкость
+#     def __init__(self, name, density):
+#         self._name = name
+#         self._density = density  # плотность жидкости
+#
+#     def edit_density(self, val):  # изменение плотности
+#         self._density = val
+#
+#     def calc_v(self, m):  # вычисление объёма жидкости
+#         res = m / self._density
+#         print(f'Объём {m} кг {self._name} равен {res} m^3')
+#         return res
+#
+#     def calc_m(self, v): # вычесление массы жидкости соотвествующее заданному значению
+#         res = v * self._density
+#         print(f'Вес {v} m^3 {self._name} равен {res} кг')
+#         return res
+#
+#     def print_info(self):
+#         print(f'Жидкость {self._name} (плотность = {self._density} kg/m^3).')
+#
+#
+# class Alcohol(Liquid):
+#     def __init__(self, name, density, strength):
+#         super().__init__(name, density)
+#         self.strength = strength  # крепость
+#
+#     def edit_strength(self, val): # изменение крепости
+#         self.strength = val
+#
+#
+# a = Alcohol('Wine', 1064.2, 14)
+# a.print_info()
+# a.edit_density(1000)
+# a.print_info()
+# a.calc_v(300)
+# a.calc_m(0.5)
+#
+# print(a.strength)
+# a.edit_strength(20)
+# print(a.strength)
+
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):
+#         return f'{self.x}, {self.y}'
+#
+#     def is_digit(self):
+#         if isinstance(self.x, (int, float)) and isinstance(self.y, (int, float)):
+#             return True
+#         else:
+#             return False
+#
+#     def is_int(self):
+#         if isinstance(self.x, int) and isinstance(self.y, int):
+#             return True
+#         else:
+#             return False
+#
+# class Prop:
+#     def __init__(self, sp: Point, ep: Point, color: str = 'red', width: int = 1):
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self._width = width
+#
+#     def set_coords(self, sp, ep):
+#         if sp.is_digit() and ep.is_digit():
+#             self._sp = sp
+#             self._ep = ep
+#         else:
+#             print('Координаты должны быть числами')
+#
+#
+# class Line(Prop):
+#     def draw_line(self):
+#         print(f"Рисование линии: {self._sp},{self._ep},{self._color}, {self._width}")
+#
+#     def set_coords(self, sp, ep):
+#         if sp.is_int() and ep.is_int():
+#             self._sp = sp
+#             self._ep = ep
+#         else:
+#             print('Координаты должны быть целыми числами')
+#
+# line = Line(Point(1, 2), Point(10, 20))
+# line.draw_line()
+# line.set_coords(Point(30.2, 40), Point(100, 200))
+# line.draw_line()
+
+
+# class Rect:
+#     def __init__(self, width, height):
+#         self.width = width
+#         self.height = height
+#
+#     def show_rect(self):
+#         print(f'Прямоугольник:\nШирина: {self.width}\nВыста: {self.height}')
+#
+#
+# class RectFon(Rect):
+#     def __init__(self, width, height, background):
+#         super().__init__(width, height)
+#         self.fon = background
+#
+#     def show_rect(self):
+#         super().show_rect()
+#         print('Фон:', self.fon)
+#
+#
+# class RectBorder(Rect):
+#     def __init__(self, width, height, border):
+#         super().__init__(width, height)
+#         self.border = border
+#
+#     def show_rect(self):
+#         super().show_rect()
+#         print('Рамка:', self.border)
+#
+#
+# shape1 = RectFon(400, 200, 'yellow')
+# shape1.show_rect()
+# shape2 = RectBorder(600, 300, '1px solid red')
+# shape2.show_rect()
+
+
+class Liquid:  # Жидкость
+    def __init__(self, name, density):
+        self._name = name
+        self._density = density  # плотность жидкости
+
+    def edit_density(self, val):  # изменение плотности
+        self._density = val
+
+    def calc_v(self, m):  # вычисление объёма жидкости
+        res = m / self._density
+        print(f'Объём {m} кг {self._name} равен {res} m^3')
+        return res
+
+    def calc_m(self, v): # вычесление массы жидкости соотвествующее заданному значению
+        res = v * self._density
+        print(f'Вес {v} m^3 {self._name} равен {res} кг')
+        return res
+
+    def print_info(self):
+        print(f'Жидкость {self._name} (плотность = {self._density} kg/m^3), ', end=' ' )
+
+
+class Alcohol(Liquid):
+    def __init__(self, name, density, strength):
+        super().__init__(name, density)
+        self.strength = strength  # крепость
+
+    def edit_strength(self, val): # изменение крепости
+        self.strength = val
+
+    def calc_v(self, m):  # переопределение вычисление объёма жидкости
+        v = super().calc_v(m)
+        v_alc = m * self.strength
+        print(f'Объём алкоголя в {m} кг {self._name} сотсовляет {v_alc} m^3.')
+        return v, v_alc
+
+    def calc_m(self, v):  # переопределение вычесление массы жидкости соотвествующее заданному значению
+        m = super().calc_v(v)
+        m_alc = v * self.strength
+        print(f'Вес алкоголя в {v} кг {self._name} сотсовляет {m_alc} m^3.')
+        return m, m_alc
+
+    def print_info(self):
+        super().print_info()
+        print(f', крепость = {self.strength:.0%}')
+
+
+
+a = Alcohol('Wine', 1064.2, 14)
+a.print_info()
+a.edit_density(1000)
+a.print_info()
+a.calc_v(300)
+a.calc_m(0.5)
+
+print(a.strength)
+a.edit_strength(20)
+print(a.strength)
+
+a.print_info()
+
