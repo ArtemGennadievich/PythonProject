@@ -898,64 +898,64 @@
 # shape2.show_rect()
 
 
-class Liquid:  # Жидкость
-    def __init__(self, name, density):
-        self._name = name
-        self._density = density  # плотность жидкости
-
-    def edit_density(self, val):  # изменение плотности
-        self._density = val
-
-    def calc_v(self, m):  # вычисление объёма жидкости
-        res = m / self._density
-        print(f'Объём {m} кг {self._name} равен {res} m^3')
-        return res
-
-    def calc_m(self, v): # вычесление массы жидкости соотвествующее заданному значению
-        res = v * self._density
-        print(f'Вес {v} m^3 {self._name} равен {res} кг')
-        return res
-
-    def print_info(self):
-        print(f'Жидкость {self._name} (плотность = {self._density} kg/m^3), ', end=' ' )
-
-
-class Alcohol(Liquid):
-    def __init__(self, name, density, strength):
-        super().__init__(name, density)
-        self.strength = strength  # крепость
-
-    def edit_strength(self, val): # изменение крепости
-        self.strength = val
-
-    def calc_v(self, m):  # переопределение вычисление объёма жидкости
-        v = super().calc_v(m)
-        v_alc = m * self.strength
-        print(f'Объём алкоголя в {m} кг {self._name} сотсовляет {v_alc} m^3.')
-        return v, v_alc
-
-    def calc_m(self, v):  # переопределение вычесление массы жидкости соотвествующее заданному значению
-        m = super().calc_v(v)
-        m_alc = v * self.strength
-        print(f'Вес алкоголя в {v} кг {self._name} сотсовляет {m_alc} m^3.')
-        return m, m_alc
-
-    def print_info(self):
-        super().print_info()
-        print(f', крепость = {self.strength:.0%}')
-
-
-
-a = Alcohol('Wine', 1064.2, 14)
-a.print_info()
-a.edit_density(1000)
-a.print_info()
-a.calc_v(300)
-a.calc_m(0.5)
-
-print(a.strength)
-a.edit_strength(20)
-print(a.strength)
-
-a.print_info()
+# class Liquid:  # Жидкость
+#     def __init__(self, name, density):
+#         self._name = name
+#         self._density = density  # плотность жидкости
+#
+#     def edit_density(self, val):  # изменение плотности
+#         self._density = val
+#
+#     def calc_v(self, m):  # вычисление объёма жидкости
+#         res = m / self._density
+#         print(f'Объём {m} кг {self._name} равен {res} m^3')
+#         return res
+#
+#     def calc_m(self, v): # вычесление массы жидкости соотвествующее заданному значению
+#         res = v * self._density
+#         print(f'Вес {v} m^3 {self._name} равен {res} кг')
+#         return res
+#
+#     def print_info(self):
+#         print(f'Жидкость {self._name} (плотность = {self._density} kg/m^3), ', end=' ' )
+#
+#
+# class Alcohol(Liquid):
+#     def __init__(self, name, density, strength):
+#         super().__init__(name, density)
+#         self.strength = strength  # крепость
+#
+#     def edit_strength(self, val): # изменение крепости
+#         self.strength = val
+#
+#     def calc_v(self, m):  # переопределение вычисление объёма жидкости
+#         v = super().calc_v(m)
+#         v_alc = m * self.strength
+#         print(f'Объём алкоголя в {m} кг {self._name} сотсовляет {v_alc} m^3.')
+#         return v, v_alc
+#
+#     def calc_m(self, v):  # переопределение вычесление массы жидкости соотвествующее заданному значению
+#         m = super().calc_v(v)
+#         m_alc = v * self.strength
+#         print(f'Вес алкоголя в {v} кг {self._name} сотсовляет {m_alc} m^3.')
+#         return m, m_alc
+#
+#     def print_info(self):
+#         super().print_info()
+#         print(f', крепость = {self.strength:.0%}')
+#
+#
+#
+# a = Alcohol('Wine', 1064.2, 14)
+# a.print_info()
+# a.edit_density(1000)
+# a.print_info()
+# a.calc_v(300)
+# a.calc_m(0.5)
+#
+# print(a.strength)
+# a.edit_strength(20)
+# print(a.strength)
+#
+# a.print_info()
 

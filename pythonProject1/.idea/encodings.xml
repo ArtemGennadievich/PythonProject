@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/2022.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HW20.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HW22.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HW23.py" charset="UTF-8" />
@@ -10,6 +11,6 @@
     <file url="file://$PROJECT_DIR$/HW28.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/HW29.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OOP.py" charset="UTF-8" />
-    <file url="PROJECT" charset="windows-1251" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
