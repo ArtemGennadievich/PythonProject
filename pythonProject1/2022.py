@@ -26,7 +26,7 @@
 #
 #     @classmethod
 #     def verify_old(cls, old):
-#         if not isinstance(old, int) or old < 14 or old > 100:
+#         if not isinstance(old, int) or old < 14  *-v-*or old > 100:
 #             raise TypeError("Возраст должен быть числом в диапозоне от 14 до 100 лет")
 #
 #     @classmethod
@@ -974,3 +974,226 @@ from abc import ABC, abstractmethod
 # t2 = Text('Python')
 # print(t1.total(35))
 # print(t2.total(35))
+
+# class Human:
+#     def __init__(self, last_name, first_name, age):
+#         self.last_name = last_name
+#         self.first_name = first_name
+#         self.age = age
+# 
+#     def info(self):
+#         print(f'{self.last_name} {self.first_name} {self.age}')
+# 
+# 
+# class Student(Human):
+#     def __init__(self, spec, group, rating, last_name, first_name, age):
+#         super().__init__(last_name, first_name, age)
+#         self.speciality = spec
+#         self.group = group
+#         self.rating = rating
+# 
+#     def info(self):
+#         print(f'{self.speciality} {self.group} {self.rating}', end=' ')
+#         super().info()
+# 
+# 
+# class Teacher(Human):
+#     def __init__(self, spec, ex, last_name, first_name, age):
+#         super().__init__(last_name, first_name, age)
+#         self.speciality = spec
+#         self.ex = ex
+# 
+#     def info(self):
+#         print(f'{self.speciality} {self.ex}', end=' ')
+#         super().info()
+# 
+# 
+# class Graduate(Student):
+#     def __init__(self, topic, spec, group, rating, last_name, first_name, age):
+#         super().__init__(spec, group, rating, last_name, first_name, age)
+#         self.topic = topic
+# 
+#     def info(self):
+#         print(f'{self.topic}', end=' ')
+#         super().info()
+# 
+# 
+# group = [
+#     Student('Батодалаев', "даши", 16, "ГК", 'Web_011', 5)
+# ]
+# for i in group:
+#     i.info()
+
+# import math
+#
+#
+# class Point:
+#     __slots__ = ('x', 'y', '__length')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         self.length = math.sqrt(x * x + y * y)
+#
+#     @property
+#     def length(self):
+#         return self.__length
+#
+#     @length.setter
+#     def length(self, value):
+#         self.__length = value
+#
+#
+# p = Point(5, 9)
+# print(p.length)
+# p.z = 6
+# print(p.__dict__)
+
+# class Point:
+#     __slots__ = ('x', 'y')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point2D:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# pt = Point(1, 2)
+# pt2 = Point2D(1, 2)
+#
+# print("pt = ", pt.__sizeof__())
+# print("pt2 = ", pt2.__sizeof__() + pt2.__dict__.__sizeof__())
+#
+# class Point:
+#     __slots__ = ('x', 'y')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point3D(Point):
+#     __slots__ = 'z'
+#
+#     def __init__(self, x, y, z):
+#         super().__init__(x,y)
+#         self.z = z
+#
+#
+# pt3 = Point3D(10, 20, 30)
+# pt3.z = 30
+# print(pt3.x, pt3.y, pt3.z)
+# print(pt3.__dict__)
+
+
+# Функторы
+
+# class Counter:
+#     def __init__(self):
+#         self.__counter = 0
+#
+#     def __call__(self, *args, **kwargs):
+#         self.__counter += 1
+#         print(self.__counter)
+#         return self.__counter
+#
+#
+# c1 = Counter()
+# c1()
+# c1()
+# c1()
+# c1()
+# c1()
+# c2 = Counter()
+# c2()
+# c2()
+# c2()
+# c2()
+
+# class ScripsChars:
+#     def __init__(self, chars):
+#         self.__chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError('Argument should be str')
+#         return args[0].strip(self.__chars)
+#
+#
+# s1 = ScripsChars('?:!.; ')
+# print(s1(" ?Hello World! "))
+#
+#
+# def strip_string(chars):
+#     def wrap(string):
+#         if not isinstance(string, str):
+#             raise ValueError('Argument should be str')
+#         return string.strip(chars)
+#
+#     return wrap
+#
+#
+# s1 = strip_string('?:!.; ')
+# print(s1(" ?Hello World! "))
+
+# class MyDecorator:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self):
+#         print('Перед вызовом функции')
+#         self.func()
+#         print('после вызова функции')
+#
+#
+# @MyDecorator
+# def function():
+#     print('func')
+#
+#
+# function()
+
+# class MyDecorator:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, a, b):
+#         print('Перед вызовом функции')
+#         res = self.func(a, b)
+#         print('после вызова функции')
+#         return res ** 2
+#
+#
+# @MyDecorator
+# def function(a, b):
+#     return a * b
+#
+#
+# print(function(2, 3))
+
+
+class MyDecorator:
+    def __init__(self, arg):
+        self.name = arg
+
+    def __call__(self, func):
+        def wrap(a, b):
+            print('Перед вызовом функции')
+            print(self.name)
+            func(a, b)
+            print('после вызова функции')
+
+        return wrap
+
+
+@MyDecorator('test2')
+def function(a, b):
+    print(a, b)
+
+
+print(function(2, 3))
