@@ -17,16 +17,28 @@
 #     if i == count:
 #         print("Результат: ", int(c / 10))
 
-n = int(input('Enter a number : '))
-reverse = 0
-while n != 0:
-    r = int(n % 10)
-    reverse = reverse * 10 + r
-    n = int(n / 10)
-print(reverse)
+# n = int(input('Enter a number : '))
+# reverse = 0
+# while n != 0:
+#     r = int(n % 10)
+#     reverse = reverse * 10 + r
+#     n = int(n / 10)
+# print(reverse)
 
 
+z = ['a', 'b', 'a', 'c', 'b', 'a', ]
+print(set(z))
+g = [z[i] for i in range(len(z)) if i == z.index(z[i])]
+print(g)
 
+# my_list = [3, 5, 2, 1, 4, 4, 1]
+# my_set = set(my_list).intersection_update()
+# print(my_set)
+# opt = [item for item in set(my_list) if my_list.count(item) > 1]
+# print(opt)
+# for i in set(my_list):
+#     if my_list.count(i) > 1:
+#         print(i, my_list.index(i))
 
 
 

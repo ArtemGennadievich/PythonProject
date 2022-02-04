@@ -289,7 +289,6 @@
 
 from abc import ABC, abstractmethod
 
-
 # class Currency(ABC):
 #     def __init__(self, value):
 #         self.value = value
@@ -1106,7 +1105,7 @@ from abc import ABC, abstractmethod
 # c1 = Counter()
 # c1()
 # c1()
-# c1()
+# c1()f
 # c1()
 # c1()
 # c2 = Counter()
@@ -1177,23 +1176,404 @@ from abc import ABC, abstractmethod
 # print(function(2, 3))
 
 
-class MyDecorator:
-    def __init__(self, arg):
-        self.name = arg
+# class MyDecorator:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             print('Перед вызовом функции')
+#             print(self.name)
+#             func(a, b)
+#             print('после вызова функции')
+#
+#         return wrap
+#
+#
+# @MyDecorator('test2')
+# def function(a, b):
+#     print(a, b)
+#
+#
+# print(function(2, 3))
 
-    def __call__(self, func):
-        def wrap(a, b):
-            print('Перед вызовом функции')
-            print(self.name)
-            func(a, b)
-            print('после вызова функции')
+# class Power:
+#     def __init__(self, arg):
+#         self.arg = arg
+#
+#     def __call__(self, argf):
+#         def wrap(a, b):
+#             return argf(a, b) ** self.arg
+#
+#         return wrap
+#
+#
+# @Power(3)
+# def multuple(a, b):
+#     return a * b
+#
+#
+# print(multuple(2, 2))
 
-        return wrap
+# def dec(fn):
+#     def wrap(*args, **kwargs):
+#         print('*' * 20)
+#         fn(*args, **kwargs)
+#         print('*' * 20)
+#     return wrap
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     @dec
+#     def info(self):
+#         print(f'{self.name} {self.surname}')
+#
+#
+# p1 = Person('Vitaly', 'Ivanov')
+# p1.info()
+
+# def decorator(cls):
+#     class Wrapper(cls):
+#         def doubler(self, value):
+#             return value * 2
+#
+#     return Wrapper
+#
+#
+# @decorator
+# class ActualClass:
+#     def __init__(self):
+#         print('Init ActualClass')
+#
+#     def quad(self, value):
+#         return value * 4
+#
+#
+# obj = ActualClass()
+# print(obj.quad(4))
+# print(obj.doubler(4))
+#
+# class Message:
+#     _REGISTERY = {}
+#
+#     def __init__(self, text):
+#         self.text = text
+#
+#     @classmethod
+#     def register(cls, name):
+#         def decorator(klass):
+#             cls._REGISTERY[name] = klass
+#             return klass
+#         return decorator
+#
+#     @classmethod
+#     def create(cls, type_mess, text):
+#         klass = cls._REGISTERY.get(type_mess)
+#         if klass is None:
+#             raise ValueError('Такого мессенджера нет')
+#         print(text, end=' ')
+#         return klass(text)
+#
+# @Message.register('Telegram')
+# class Telegram(Message):
+#     def send(self):
+#         print('(Telegram)')
+#
+# @Message.register('WhatsApp')
+# class WhatsApp(Message):
+#     def send(self):
+#         print('(WhatsApp)')
+#
+#
+# m1 = Message.create('Telegram','Hi, i am programmer in T')
+# m1.send()
+# m2 = Message.create('WhatsApp', 'Hi, i am programmer in W')
+# m2.send()
+
+# Дескриптор
+# class Person:
+#     def __init__(self, name, surname):
+#         self.__name = name
+#         self.__surname = surname
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, value):
+#         self.__name = value
+#
+#     @property
+#     def surname(self):
+#         return self.__surname
+#
+#     @surname.setter
+#     def surname(self, value):
+#         self.__surname = value
+#
+# p = Person('Ivan', 'Ivanov')
+
+# class String:
+#     def __init__(self, value=None):
+#         if value:
+#             self.set(value)
+#
+#     def set(self, value):
+#         self.__value = value
+#
+#     def get(self):
+#         return self.__value
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = String(name)
+#         self.surname = String(surname)
+#
+#
+# p = Person('Ivan', 'Ivanov')
+# print(p.name.get())
+# p.name.set('Игорь')
+# print(p.name.get())
 
 
-@MyDecorator('test2')
-def function(a, b):
-    print(a, b)
+# Дескрипторы
+# __get__()
+# __set__()
+# __delete__()
+# __set_name__()
+# non-data descriptor - дескриптор не данных
 
 
-print(function(2, 3))
+# class ValidString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if not isinstance(value, str):
+#             raise ValueError(f'{self.__name} должно быть строкой')
+#         instance.__dict__[self.__name] = value
+#
+# class Person:
+#     name = ValidString()
+#     surname = ValidString()
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#
+# p = Person('Ivan', 'Ivanov')
+# print(p.name)
+# p.surname = 'Kirill'
+# print(p.surname)
+
+# class NonNegative:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __set__(self, instance, value):
+#         if value < 0:
+#             raise ValueError('Значение должно быть положительным')
+#         instance.__dict__[self.__name] = value
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#
+# class Order:
+#     price = NonNegative()
+#     qua = NonNegative()
+#
+#     def __init__(self, name, price, qua):
+#         self.name = name
+#         self.price = price
+#         self.qua = qua
+#
+#     def total(self):
+#         return self.price * self.qua
+#
+#
+# apple = Order('apple', 5, 10)
+# print(apple.total())
+# apple.price = 10
+# print(apple.price)
+
+# Метаклассы
+
+# a = 5
+# print(type(a))
+# print(type(int))
+# print(type(type))
+#
+
+# class Mylist(list):
+#     def het_length(self):
+#         return len(self)
+#
+#
+# lst = Mylist()
+# lst.append(1)
+# lst.append(2)
+# lst[0] = 3
+# print(lst, lst.het_length())
+
+# Mylist = type(
+#     'Mylist',
+#     (list,),
+#     dict(het_length=lambda self: len(self))
+# )
+# lst = Mylist()
+# lst.append(1)
+# lst.append(2)
+# lst[0] = 3
+# print(lst, lst.het_length())
+
+# class MyMetaclass(type):
+#     def __new__(mcs, name, bases, attr):
+#         print('Создание нового объекта', name)
+#         return super(MyMetaclass, mcs).__new__(mcs, name, bases, attr)
+#
+#     def __init__(cls, name, bases, attr):
+#         print('Init of class', name)
+#         super(MyMetaclass, cls).__init__(name, bases, attr)
+#
+#
+# class Student(metaclass=MyMetaclass):
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# stud = Student('Ann')
+# print(stud.get_name())
+# print(type(stud))
+# print(type(Student))
+
+# import math
+# from math import pi
+# print(pi)
+
+# import пакет.модуль
+# import geometry.rect
+# import geometry.sq
+# import geometry.trian
+# from wheel import rect,sq,trian
+# from wheel import *
+#
+# # from geometry import *
+#
+# r1 = rect.Rectangle(1, 2)
+# r2 = rect.Rectangle(3, 4)
+# s1 = sq.Square(10)
+# s2 = sq.Square(20)
+# t1 = trian.Triangle(1, 2, 3)
+# t2 = trian.Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+# for g in shape:
+#     print(g.get_perimetr())
+#
+# print(__name__)
+#
+# if __name__ == '__main__':
+#     #  содержимое класса
+#     pass
+
+
+# from car import electrocar
+#
+# e = electrocar.Electrocar('Tesla', 'T', 2018, 99000)
+# e.show_car()
+# e.decription_battery()
+
+
+# Упаковка данных
+# Сериализация (кодирование) - запись данныз на диск
+# Десериализация (декодирование) - чтение данных с памяти/диска
+
+# Ствндарстной библиотеке python:
+# - marshal
+# - pickle
+#          dump() - сохраняет данные в файл
+#          load() - считывает данные
+#          dump() - сохраняет данные в оперативную память
+#          loads() - считывает данные оперативной памяти
+# - json
+
+import pickle
+
+
+# filename = 'basket.txt'
+#
+# shoplist = {
+#     "фрукты": ['apple', 'mango'],
+#     'овощи': ['morkov'],
+#     'money': 1000
+# }
+#
+# with open(filename, 'wb') as yyyy:
+#     pickle.dump(shoplist, yyyy)
+#
+# with open(filename, 'rb') as h:
+#     print(pickle.load(h))
+
+
+# class Test:
+#     a_number = 35
+#     a_string = 'hi'
+#     a_list = [1, 2, 23, 4, 3]
+#     a_tuple = (23, 22)
+#     a_dict = {'31234': 'df', 'sef': 334, 'ddf': [2, 2, 2]}
+#
+#     def __str__(self):
+#         return f'Число: {Test.a_number}\nСтрока{Test.a_string}\nСписок данных{Test.a_list}\nКортеж{Test.a_tuple}' \
+#                f'\nСловарь{Test.a_dict}'
+#
+#
+# obj = Test()
+# my_obj = pickle.dumps(obj)
+# print(f'Сериализация в строку: \n{my_obj}\n')
+#
+# obj_a = pickle.loads(my_obj)
+# print(f'Десериализация в строку: \n{obj_a}\n')
+
+# class Test2:
+#     def __init__(self):
+#         self.a = 35
+#         self.b = 'test'
+#         self.c = lambda x: x * x
+#
+#     def __str__(self):
+#         return f'{self.a}, {self.b}, {self.c(2)}'
+#
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         print(attr)
+#         return attr
+#
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#         print(state)
+#
+# item = Test2()
+# item2 = pickle.dumps(item)
+# item3 = pickle.loads(item2)
+# print(item3.__dict__)
+# print(item3)
+
+class TextReader:
+    def __init__(self, filename):
+
+
