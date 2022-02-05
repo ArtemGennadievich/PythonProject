@@ -1,14 +1,14 @@
 class SG:
     def __set_name__(self, owner, name):
-        self._name = name
+        self.name = name
 
     def __get__(self, instance, owner):
-        return instance.__dict__[self._name]
+        return instance.__dict__[self.name]
 
     def __set__(self, instance, value):
         if not isinstance(value, int):
             raise ValueError('Число должно быть целым')
-        instance.__dict__[self._name] = value
+        instance.__dict__[self.name] = value
 
 
 class Point3D:
@@ -17,9 +17,9 @@ class Point3D:
     z = SG()
 
     def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
+        self._x = x
+        self._y = y
+        self._z = z
 
 
 point = Point3D(1, 2, 3)
