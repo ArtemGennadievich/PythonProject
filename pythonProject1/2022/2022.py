@@ -1485,16 +1485,16 @@ from abc import ABC, abstractmethod
 #
 # print(__name__)
 #
-# if __name__ == '__main__':
-#     #  содержимое класса
-#     pass
+if __name__ == '__main__':
+    #  содержимое класса
+    pass
 
 
-# from car import electrocar
-#
-# e = electrocar.Electrocar('Tesla', 'T', 2018, 99000)
-# e.show_car()
-# e.decription_battery()
+from car import electrocar
+
+e = electrocar.Electrocar('Tesla', 'T', 2018, 99000)
+e.show_car()
+e.decription_battery()
 
 
 # Упаковка данных
@@ -1573,7 +1573,7 @@ import pickle
 # print(item3.__dict__)
 # print(item3)
 
-class TextReader:
-    def __init__(self, filename):
-
-
+# class TextReader:
+#     def __init__(self, filename):
+#
+#
