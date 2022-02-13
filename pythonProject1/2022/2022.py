@@ -1485,16 +1485,16 @@ from abc import ABC, abstractmethod
 #
 # print(__name__)
 #
-if __name__ == '__main__':
-    #  содержимое класса
-    pass
-
-
-from car import electrocar
-
-e = electrocar.Electrocar('Tesla', 'T', 2018, 99000)
-e.show_car()
-e.decription_battery()
+# if __name__ == '__main__':
+#     #  содержимое класса
+#     pass
+#
+#
+# from car import electrocar
+#
+# e = electrocar.Electrocar('Tesla', 'T', 2018, 99000)
+# e.show_car()
+# e.decription_battery()
 
 
 # Упаковка данных
@@ -1511,7 +1511,6 @@ e.decription_battery()
 # - json
 
 import pickle
-
 
 # filename = 'basket.txt'
 #
@@ -1575,5 +1574,157 @@ import pickle
 
 # class TextReader:
 #     def __init__(self, filename):
+#         self.filename = filename
+#         self.file = open(filename)
+#         self.count = 0
+#
+#     def red_line(self):
+#         self.count += 1
+#         line = self.file.readline()
+#         if not line:
+#             return None
+#         if line.endswith('\n'):
+#             line = line[:-1]
+#         return f"{self.count}: {line}"
+#
+#     def __getstate__(self):
+#         state = self.__dict__.copy()
+#         del state['file']
+#         return state
+#
+#     def __setstate__(self, state):
+#         self.__dict__.update(state)
+#         file = open(self.filename)
+#         for i in range(self.count):
+#             file.readline()
+#         self.file = file
 #
 #
+# reader = TextReader("hello.txt")
+# print(reader.red_line())
+# print(reader.red_line())
+#
+# new_reader = pickle.loads(pickle.dumps(reader))
+# print(new_reader.red_line())
+
+
+# import json
+#
+#
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         a = ''
+#         for i in self.marks:
+#             a += str(i) + ', '
+#         return f'Студент {self.name}: {a[:-2]}'
+#
+#     def add_mark(self, value):
+#         self.marks.append(value)
+#
+#     def del_mark(self, index):
+#         self.marks.pop(index)
+#
+#     def change_mark(self, index, value):
+#         self.marks[index] = value
+#
+#     def diff_mark(self):
+#         return round(sum(self.marks) / len(self.marks), 2)
+#
+#     @classmethod
+#     def dump_to_json(cls, student, filename):
+#         try:
+#             data = json.load(open(filename))
+#         except:
+#             data = []
+#
+#         data.append({'name': student.name, 'marks': student.marks})
+#         with open(filename, 'w') as f:
+#             json.dump(data, f, indent=2)
+#
+#     @classmethod
+#     def load_from_file(cls, filename):
+#         with open(filename, 'r') as f:
+#             print(json.load(f))
+#
+#
+# # st1 = Student('Bob', [5, 4, 4, 4, 3, 2])
+# # print(st1)
+# # st1.add_mark(4)
+# # print(st1)
+# # st1.del_mark(3)
+# # print(st1)
+# # print(st1.diff_mark())
+#
+#
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         a = ''
+#         for i in self.students:
+#             a += str(i) + '\n'
+#         return f'Group: {self.group}\n{a}'
+#
+#     def add_student(self, value):
+#         self.students.append(value)
+#
+#     def del_student(self, index):
+#         return self.students.pop(index)
+#
+#     @classmethod
+#     def change_student(cls, group1, group2, index):
+#         return group2.add_student(group1.del_student(index))
+#
+#     @classmethod
+#     def dump_group(cls, file, groups):
+#         try:
+#             data = json.load(open(file))
+#         except:
+#             data = []
+#
+#         with open(file, 'w') as h:
+#             stud_list = []
+#             for i in groups.students:
+#                 stud_list.append([i.name, i.marks])
+#             tmp = {'Student': stud_list}
+#             data.append(tmp['Student'])
+#             json.dump(data, h, indent=2)
+#
+#     @classmethod
+#     def upload_joi(cls, file):
+#         with open(file, 'r') as r:
+#             print(json.load(r))
+#
+#
+#
+# st1 = Student('Bob', [5, 4, 4, 4, 3, 2])
+# st2 = Student('Mikel', [3, 5, 3, 2])
+# st3 = Student('Brise', [5, 5, 5, 5, 3, 3])
+#
+# # Student.dump_to_json(st1, 'Student.json')
+# # Student.load_from_file('Student.json')
+# lst = [st1, st2]
+# my_group = Group(lst, 'ГК Python')
+# print(my_group)
+# # Group.dump_group('group.json', my_group)
+# my_group.add_student(st3)
+# print(my_group)
+# my_group.del_student(1)
+# print(my_group)
+#
+# group22 = [st2]
+# my_group22 = Group(group22, 'ГК Web')
+# # Group.change_student(my_group, my_group22, 0)
+# print(my_group)
+# print(my_group22)
+# Group.upload_joi('group.json')
+
+pip instal request
+
+
